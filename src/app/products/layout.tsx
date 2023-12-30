@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import styles from './layout.module.css';
-
-export default function ProductsLayout({ children }) {
+import Link from 'next/link';
+interface Props extends PropsWithChildren {}
+export default function ProductsLayout({ children }: Props) {
 	return (
 		<>
 			<nav className={styles.nav}>
-				<a href="">여성옷</a>
-				<a href="">남성옷</a>
+				<Link href="/products/women">여성옷</Link>
+				<a href="/products/men">남성옷</a>
 			</nav>
 
 			<section className={styles.product}>{children}</section>
