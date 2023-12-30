@@ -11,7 +11,7 @@ export default function ProductsPage({ params }: Props) {
 	if (params.slug === 'nothing') {
 		notFound();
 	}
-	return <div>{params.slug}Page</div>;
+	return <div>제품 {params.slug}Page</div>;
 }
 
 export function generateStaticParams() {
