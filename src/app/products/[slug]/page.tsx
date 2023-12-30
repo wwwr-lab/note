@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import React from 'react';
 
 type Props = {
@@ -7,6 +8,9 @@ type Props = {
 };
 
 export default function ProductsPage({ params }: Props) {
+	if (params.slug === 'nothing') {
+		notFound();
+	}
 	return <div>{params.slug}Page</div>;
 }
 
