@@ -6,7 +6,11 @@ type Props = {
 		slug: string;
 	};
 };
-
+export function generateMetadata({ params }: Props) {
+	return {
+		title: `제품의 이름: ${params.slug}`,
+	};
+}
 export default function ProductsPage({ params }: Props) {
 	if (params.slug === 'nothing') {
 		notFound();
