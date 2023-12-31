@@ -1,3 +1,4 @@
+import { getProduct, getProducts } from '@/service/products';
 import { notFound } from 'next/navigation';
 import React from 'react';
 
@@ -11,16 +12,22 @@ export function generateMetadata({ params }: Props) {
 		title: `제품의 이름: ${params.slug}`,
 	};
 }
-export default function ProductsPage({ params }: Props) {
-	if (params.slug === 'nothing') {
+export const revalidate = 3;
+
+export default async function ProductPage({ params: { slug } }: Props) {
+	//서버 파일(데이터베이스)에 있는 제품의 리스트를 읽어와서, 그걸 보여줌
+	const product = await getProduct(slug);
+	if (!product) {
 		notFound();
 	}
-	return <div>제품 {params.slug}Page</div>;
+	//서버 파일에 있는 데이터 중 해당 제품의 정보를 찾아서 그걸 보여줌
+	return <div>제품 {product.name}Page</div>;
 }
 
-export function generateStaticParams() {
-	const products = ['pants', 'skirts'];
+export async function generateStaticParams() {
+	//모든 제품의 페이지들을 미리 만들어 둘 수 있게 해줄거임(SSG)
+	const products = await getProducts();
 	return products.map((product) => ({
-		slug: product,
+		slug: product.id,
 	}));
 }
