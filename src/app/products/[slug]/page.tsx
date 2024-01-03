@@ -1,6 +1,7 @@
 import { getProduct, getProducts } from '@/service/products';
 import { notFound } from 'next/navigation';
 import React from 'react';
+import Image from 'next/image';
 
 type Props = {
 	params: {
@@ -20,8 +21,14 @@ export default async function ProductPage({ params: { slug } }: Props) {
 	if (!product) {
 		notFound();
 	}
+
 	//서버 파일에 있는 데이터 중 해당 제품의 정보를 찾아서 그걸 보여줌
-	return <div>제품 {product.name}Page</div>;
+	return (
+		<div>
+			<h3>{product.name} 제품 설명 페이지</h3>
+			<Image src={`/images/${product.image}`} alt={product.name} width={300} height={300} />
+		</div>
+	);
 }
 
 export async function generateStaticParams() {
