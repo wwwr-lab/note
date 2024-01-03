@@ -8,6 +8,7 @@ const nextConfig = {
     }]
   },
   async redirects(){
+    //다른 곳으로 이동
     return [
       {
         source: '/products/deleted_forever',
@@ -20,6 +21,19 @@ const nextConfig = {
         permanent:false
       },
       
+    ]
+  },
+  async rewrites(){
+    //다른 주소 덮어쓰기(대체))
+    return [
+      {
+        source:'/ellie',
+        destination:'/about/me/ellie'
+      },
+      {
+        source:'/items/:slug',
+        destination:'/products/:slug'
+      }
     ]
   }
 }
