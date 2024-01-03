@@ -10,5 +10,7 @@ export function middleware(request: NextRequest) {
 
 //특정한 경로에서만 수행할지
 export const config = {
-	matcher: ['/products/:path*'],
+	matcher: ['/products/:path*'], //path가 있거나(많거나) 없거나 둘 다 가능
+	//matcher: ['/products/:path+'], //path가 하나 또는 많거나 => /products/slug 다이나믹 경로에 해당하는 곳에서만 미들웨어 실행
+
 };
