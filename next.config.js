@@ -6,6 +6,21 @@ const nextConfig = {
       hostname:'images.unsplash.com',
 
     }]
+  },
+  async redirects(){
+    return [
+      {
+        source: '/products/deleted_forever',
+        destination:'/products',
+        permanent:true
+      },
+      {
+        source: '/products/deleted_not_forever',
+        destination:'/products',
+        permanent:false
+      },
+      
+    ]
   }
 }
 
